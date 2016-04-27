@@ -12,8 +12,8 @@ Then to access the service you can visit the endpoints at:
 
 ## Running cricd-entities locally
 So long as you have Node.js installed you can run the cricd-entities service locally by:
-1. Cloning this repository
-1. `npm install`
-1. `sails lift`
+`git clone [this repository]`
+`npm install`
+`sails lift`
 
 
