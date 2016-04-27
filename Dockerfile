@@ -14,7 +14,7 @@ RUN npm install -g sails grunt bower pm2 npm-check-updates
 
 # Pull down the source from the repo and download dependencies
 RUN git clone git://github.com/bradleyscott/cricd-entities.git \
-	&& cd cricd-entities
+	&& cd cricd-entities \
 	&& npm install
 
 # Define working directory.
