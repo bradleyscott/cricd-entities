@@ -1,0 +1,26 @@
+{
+  "name": "cricd-entities",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A RESTful API to record cricket players, the teams they play for and the matches they play",
+  "keywords": [],
+  "dependencies": {
+    "include-all": "~0.1.6",
+    "rc": "~1.0.1",
+    "sails": "~0.12.0-rc3",
+    "sails-disk": "~0.10.7",
+    "sails-hook-autoreload": "^0.13.1",
+    "sails-mysql": "^0.12.1"
+  },
+  "scripts": {
+    "debug": "node debug app.js",
+    "start": "node app.js"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bradleyscott/cricd-entities.git"
+  },
+  "author": "bradley",
+  "license": ""
+}
