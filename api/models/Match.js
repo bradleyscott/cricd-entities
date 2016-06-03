@@ -45,7 +45,7 @@ module.exports = {
                 cb();
             } else {
                 var proposedStart = moment(values.startDate);
-                
+
                 var isClash = _(matches).some(function(match) {
                     return proposedStart.isSame(match.startDate, 'day');
                 });
