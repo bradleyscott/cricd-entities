@@ -1,6 +1,7 @@
 # cricd-entities
 cricd-entities is a RESTful API built using Sails.js to record cricket players, the teams they play for and the matches they play
-It is intended to provide a component to assist the [cricd](https://github.com/ryankscott/cricd) project which is an open platform for cricket scoringt
+It is intended to provide a component to assist the [cricd](https://github.com/ryankscott/cricd) project which is an open platform for cricket scoring
+
 ## Running the cricd-entities service in Docker
 If you have Docker installed simply run `docker run -d -p 1337:1337 bradleyscott/cricd-entities` in your terminal
 
