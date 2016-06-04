@@ -47,13 +47,6 @@ module.exports.connections = {
     password: 'YOUR_MYSQL_PASSWORD',
     database: 'YOUR_MYSQL_DB'
   },
-  defaultMysqlServer: {
-    adapter: 'sails-mysql',
-    host: 'localhost',
-    user: 'cricd_entities_user',
-    password: 'YOUR_MYSQL_PASSWORD', // Store passwords in local.js to avoid source control checkin of secrets
-    database: 'cricd_entities'
-  },
 
   /***************************************************************************
   *                                                                          *
@@ -87,8 +80,15 @@ module.exports.connections = {
     user: 'YOUR_POSTGRES_USER',
     password: 'YOUR_POSTGRES_PASSWORD',
     database: 'YOUR_POSTGRES_DB'
-  }
+  },
 
+  cricdPostgresqlServer: {
+    adapter: 'sails-postgresql',
+    // host: 'YOUR_POSTGRES_SERVER_HOSTNAME_OR_IP_ADDRESS', Set using environment variable sails_connections__cricdPostgressqlServer__host
+    user: 'postgres',
+    // password: 'YOUR_POSTGRES_PASSWORD', Set using environment variable sails_connections__cricdPostgressqlServer__password
+    database: 'cricd-entities'
+  }
 
   /***************************************************************************
   *                                                                          *
