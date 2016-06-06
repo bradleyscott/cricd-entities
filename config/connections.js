@@ -84,9 +84,9 @@ module.exports.connections = {
 
   cricdPostgresqlServer: {
     adapter: 'sails-postgresql',
-    // host: 'YOUR_POSTGRES_SERVER_HOSTNAME_OR_IP_ADDRESS', Set using environment variable sails_connections__cricdPostgressqlServer__host
+    host: process.env.DB_HOST,
     user: 'postgres',
-    // password: 'YOUR_POSTGRES_PASSWORD', Set using environment variable sails_connections__cricdPostgressqlServer__password
+    password: process.env.DB_PASSWORD,
     database: 'cricd-entities'
   }
 
