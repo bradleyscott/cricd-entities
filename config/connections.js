@@ -48,6 +48,14 @@ module.exports.connections = {
     database: 'YOUR_MYSQL_DB'
   },
 
+  cricdMysqlServer: {
+    adapter: 'sails-mysql',
+    host: process.env.DB_HOST,
+    user: 'cricd-entities',
+    password: process.env.DB_PASSWORD,
+    database: 'cricd-entities'
+  },
+
   /***************************************************************************
   *                                                                          *
   * MongoDB is the leading NoSQL database.                                   *
