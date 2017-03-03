@@ -22,14 +22,14 @@ module.exports = {
             } else {
                 var proposedStart = moment(req.body.startDate);
 
-                var isClash = _(matches).some(function(match) {
+                var isClash = _(matches).find(function(match) {
                     return proposedStart.isSame(match.startDate, 'day');
                 });
 
                 if(isClash) {
                     var message = 'Can not create Match. These teams have played each other on this date previously';
                     sails.log.debug(message);
-                    return res.badRequest(message);
+                    return res.ok(isClash);
                 } else { createMatch(req, res); }
             }
         }).catch(function(error) {
@@ -49,7 +49,7 @@ var createMatch = function(req, res) {
             return res.error(error);
         } else {
             sails.log.debug('Match successfully created');
-            return res.ok(newMatch);
+            return res.created(newMatch);
         }
     });
 
