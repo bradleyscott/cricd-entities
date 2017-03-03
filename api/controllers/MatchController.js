@@ -45,8 +45,8 @@ var createMatch = function(req, res) {
 
     Match.create(req.body).exec(function(err, newMatch){
         if(err) {
-            sails.log.error(error);
-            return res.error(error);
+            sails.log.error(err);
+            return res.error(err);
         } else {
             sails.log.debug('Match successfully created');
             return res.created(newMatch);
