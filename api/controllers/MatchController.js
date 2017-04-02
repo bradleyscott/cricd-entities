@@ -7,7 +7,7 @@
 var moment = require('moment');
 
 module.exports = {
-    create: function(req, res) {
+    create: function (req, res) {
         sails.log.debug('Validating Match object before creation');
 
         Match.find({
@@ -15,41 +15,49 @@ module.exports = {
                 homeTeam: [req.body.homeTeam, req.body.awayTeam],
                 awayTeam: [req.body.awayTeam, req.body.homeTeam]
             }
-        }).then(function(matches) {
-            if(matches.length == 0) {
-                sails.log.debug('No Matches between these sides before. Creating Match');
-                createMatch(req, res);
-            } else {
-                var proposedStart = moment(req.body.startDate);
+        })
+            .populate('homeTeam')
+            .populate('awayTeam')
+            .then(function (matches) {
+                if (matches.length == 0) {
+                    sails.log.debug('No Matches between these sides before. Creating Match');
+                    createMatch(req, res);
+                } else {
+                    var proposedStart = moment(req.body.startDate);
 
-                var isClash = _(matches).find(function(match) {
-                    return proposedStart.isSame(match.startDate, 'day');
-                });
+                    var isClash = _(matches).find(function (match) {
+                        return proposedStart.isSame(match.startDate, 'day');
+                    });
 
-                if(isClash) {
-                    var message = 'Can not create Match. These teams have played each other on this date previously';
-                    sails.log.debug(message);
-                    return res.ok(isClash);
-                } else { createMatch(req, res); }
-            }
-        }).catch(function(error) {
-            sails.log.error(error);
-            return res.serverError(error);
-        });
+                    if (isClash) {
+                        var message = 'Can not create Match. These teams have played each other on this date previously';
+                        sails.log.debug(message);
+                        return res.ok(isClash);
+                    } else { createMatch(req, res); }
+                }
+            }).catch(function (error) {
+                sails.log.error(error);
+                return res.serverError(error);
+            });
 
     }
 };
 
-var createMatch = function(req, res) {
+var createMatch = function (req, res) {
     sails.log.debug('Attempting to create match...');
 
-    Match.create(req.body).exec(function(err, newMatch){
-        if(err) {
+    Match.create(req.body).exec(function (err, newMatch) {
+        if (err) {
             sails.log.error(err);
             return res.serverError(err);
         } else {
             sails.log.debug('Match successfully created');
-            return res.created(newMatch);
+            Match.findOne({ id: newMatch.id })
+                .populate('homeTeam')
+                .populate('awayTeam')
+                .exec(function (error, record) {
+                    return res.created(record);
+                });
         }
     });
 
